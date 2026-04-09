@@ -1,0 +1,38 @@
+name: Test Fabric Login
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install azure-identity requests
+
+      - name: Test authentication
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        run: |
+          python - <<EOF
+          from azure.identity import ClientSecretCredential
+          import os
+
+          credential = ClientSecretCredential(
+              tenant_id=os.environ["AZURE_TENANT_ID"],
+              client_id=os.environ["AZURE_CLIENT_ID"],
+              client_secret=os.environ["AZURE_CLIENT_SECRET"]
+          )
+
+          token = credential.get_token("https://analysis.windows.net/powerbi/api/.default")
+          print("Authentication successful")
+          EOF
