@@ -1,9 +1,9 @@
 import requests
 from azure.identity import ClientSecretCredential
 
-tenant_id = "TENANT_ID"
-client_id = "CLIENT_ID"
-client_secret = "CLIENT_SECRET"
+tenant_id = "AZURE_TENANT_ID"
+client_id = "AZURE_CLIENT_ID"
+client_secret = "AZURE_CLIENT_SECRET"
 
 credential = ClientSecretCredential(
     tenant_id=tenant_id,
