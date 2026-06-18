@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "id": "da6d07bd-dd55-4522-957d-e66e9c497350",
+      "name": "new-source",
+      "type": "Http",
+      "properties": {
+        "dataConnectionId": "93f0dbff-b1dd-48d5-b23e-f20173d1ac23",
+        "method": "GET",
+        "requestHeaders": [],
+        "requestParameters": [
+          {
+            "Key": "symbols",
+            "Value": "ERW.BK,MINT.BK,CENTEL.BK,DUSIT.BK,^SET.BK"
+          }
+        ],
+        "requestBody": "",
+        "pollIntervalMs": 300000,
+        "maxRetries": 10,
+        "retryBackoffMs": 3000,
+        "retriableHttpStatusCodes": "500, 502, 503, 504"
+      }
+    }
+  ],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "5dc51cb1-eebe-42b6-b51c-a5eb5278494e",
+      "name": "api_connect_test_stream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "new-source"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}
